@@ -121,7 +121,7 @@ const getRandomPicture = pictures =>
 // what does a the yield key word do?
 // what seems to be the point of using 'call' and 'put' (not just calling the function directly)?
 // what happens if a call errors out?
-function* createPictures() {
+function* createRound() {
   const pixels = yield call(getNewPictures)
   const question = yield call(getRandomPicture, pixels)
   const pixelsWithAnswer = {...pixels, question}
@@ -156,8 +156,8 @@ function* handleChoice({isCorrect}) {
   yield put({type: 'RECORD_PLAY', correct})
 }
 
-function* watchPictures() {
-  yield takeEvery('RESET_PLAY', createPictures)
+function* watchRounds() {
+  yield takeEvery('RESET_PLAY', createRound)
 }
 
 function* watchChoices() {
@@ -167,7 +167,7 @@ function* watchChoices() {
 // this is composes all our sagas to be passed to redux to use as middleware
 function* rootSaga() {
   yield all([
-    watchPictures(),
+    watchRounds(),
     watchChoices(),
     watchTimer()
   ])
