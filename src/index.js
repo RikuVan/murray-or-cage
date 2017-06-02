@@ -115,7 +115,6 @@ const getRandomPicture = pictures =>
 
 //----------------------------------------------------
 //                  REDUX SAGAS
-//    ..don't bother with these, used in the sagas
 // ---------------------------------------------------
 
 // what does a the yield key word do?
